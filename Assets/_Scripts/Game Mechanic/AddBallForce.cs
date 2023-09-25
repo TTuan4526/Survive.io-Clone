@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class AddBallForce : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject ball;
+    public bool left, right, up, down;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Ball"))
+        {
+            if (left)
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(-transform.right * 500);
+            }
+            else if (right)
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(transform.right * 500);
+            }
+            else if (up)
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(transform.up * 500);
+            }
+            else if (down)
+            {
+                ball.GetComponent<Rigidbody2D>().AddForce(-transform.up * 500);
+            }
+        }
     }
 }
